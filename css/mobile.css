@@ -1,0 +1,63 @@
+p, h1, div, a {
+    font-size: medium;
+}
+
+.infoTitle {
+    height: calc(var(--TtlHgt) + 20px);
+}
+
+.Tables {
+    height: calc(var(--vwtHgt) - 115px);
+    padding-right: 10px; 
+    margin-right: 15px;
+    scroll-snap-type: x mandatory;
+    gap: 0; 
+}
+
+.DayTitle, .HourTitle {
+    min-height: calc(var(--TtlHgt) + 10px)
+}
+
+.ClassColumn {
+    min-width: 85%;
+    margin-left: 20px;
+    scroll-snap-align: end;
+    gap: 10px;
+}
+
+.HourColumn {
+    min-width: 15%;
+    gap: 10px;
+}
+
+.pClasses {
+    display: block;
+    position: relative;
+}
+
+.Classes {
+    overflow: scroll;
+}
+
+.Tables::-webkit-scrollbar, .Tables::-webkit-scrollbar-corner { 
+    width: 0;
+}
+
+.loading {
+    width: 60px; height: 60px;
+}
+
+.SearchAreaOff {
+    right: 15px;
+    bottom: 45px;
+}
+
+.menu {
+    flex-wrap: wrap;
+}
+
+.menu #lastChangeStatus {
+    position: relative;
+    padding: 0;
+    flex-basis: 100%;
+}
