@@ -14,27 +14,27 @@ function getFltrsFlds(data) { let ltCourses = new Object(), ltTchr = new Array()
         line[clmnHdrs.curso] != " " &&
         line[clmnHdrs.curso] != "-" &&
         line[clmnHdrs.curso] != null
-      ){ ltCourses[line[clmnHdrs.curso]] = {'#smstr': [], '#time': []}; }
+      ){ ltCourses[line[clmnHdrs.curso]] = {'smstr': [], 'time': []}; }
         
 
       if (
         typeof ltCourses[line[clmnHdrs.curso]] !== 'undefined' &&
-        !ltCourses[line[clmnHdrs.curso]]['#smstr'].includes(line[clmnHdrs.semestre]) &&
+        !ltCourses[line[clmnHdrs.curso]]['smstr'].includes(line[clmnHdrs.semestre]) &&
         line[clmnHdrs.semestre] != "" &&
         line[clmnHdrs.semestre] != " " &&
         line[clmnHdrs.semestre] != "-" &&
         line[clmnHdrs.semestre] != null
-      ){ ltCourses[line[clmnHdrs.curso]]['#smstr'].push(line[clmnHdrs.semestre]); }
+      ){ ltCourses[line[clmnHdrs.curso]]['smstr'].push(line[clmnHdrs.semestre]); }
       
 
       if (
         typeof ltCourses[line[clmnHdrs.curso]] !== 'undefined' &&
-        !ltCourses[line[clmnHdrs.curso]]['#time'].includes(line[clmnHdrs.turno]) &&
+        !ltCourses[line[clmnHdrs.curso]]['time'].includes(line[clmnHdrs.turno]) &&
         line[clmnHdrs.turno] != "" &&
         line[clmnHdrs.turno] != " " &&
         line[clmnHdrs.turno] != "-" &&
         line[clmnHdrs.turno] != null
-      ){ ltCourses[line[clmnHdrs.curso]]['#time'].push(line[clmnHdrs.turno]); }
+      ){ ltCourses[line[clmnHdrs.curso]]['time'].push(line[clmnHdrs.turno]); }
 
 
       if (
@@ -143,7 +143,7 @@ function getFltrsFldsOG(data) { let ltCourse = new Array(), ltTchr = new Array()
 
       optLabel.append(optItem);
       optLabel.innerHTML +=  sms;
-      $('#smstr').append(optLabel);
+      $('smstr').append(optLabel);
     }
   
     for (let tm of ltTime) {
@@ -159,7 +159,7 @@ function getFltrsFldsOG(data) { let ltCourse = new Array(), ltTchr = new Array()
 
       optLabel.append(optItem);
       optLabel.innerHTML += tm;
-      $('#time').append(optLabel);
+      $('time').append(optLabel);
     }
     
     for (let tchr of ltTchr) { let optItem = document.createElement("input");
@@ -205,8 +205,8 @@ function createFilterObjectItems (filtersArray) {
   
     $('#course').append(optItem);
 
-    filtersArray[key]['#smstr'].sort();
-    filtersArray[key]['#time'].sort();
+    filtersArray[key]['smstr'].sort();
+    filtersArray[key]['time'].sort();
 
     nwCourses[key] = filtersArray[key];
 

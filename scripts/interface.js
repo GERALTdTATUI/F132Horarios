@@ -2,7 +2,12 @@ var schPreferences;
 
 //Define se o tema é escuro ou claro
 function chgTheme(bt) { let cssVars = document.querySelector(':root').style;
-    if ($(bt).css('transform') == 'none' || bt === 'light') { //LightTheme
+    if (typeof(bt) === "object") switch (cookies.thmPref) {
+        case "light": cookies.thmPref = "dark"; break;
+        default: cookies.thmPref = "light"; break;
+    }
+
+    if (cookies.thmPref === 'light') { //LightTheme
         $('#sld1').css('transform', 'translateX(70%)');
         $('#sld1').css('background-color', '#dcdcdc');
         $('#ftaLogo').attr('src', './assets/logos/fatecLogoLight.png');
@@ -190,15 +195,15 @@ function resetSavedSearch() {
 
 
 
-
-
 // Triggers
 //Trigger para detecar se a página vai carregar com, ou sem, o filtro de professores
 $(document).ready(() => {
     const f132OGfilters = sessionStorage.getItem("f132OGfilters");
+    const urlParams = new URLSearchParams(window.location.search);
+    const teacherFilter = urlParams.get("teacherFilterEnable");
     
     //Se a variável "teacherFilterEnable" for 1, ele habilita o filtro de professores
-    if (f132OGfilters){
+    if (f132OGfilters || teacherFilter){
         $("#prsnBt3").show();
         $("#prsnBt4").show();
     }
@@ -247,28 +252,26 @@ $("#course").change(() => {
 
     let slctdCourse = $("#course").val(); //Identificando o curso selecionado pelo user
     let lastSelection = { //identificando o último semestre e período selecionados
-        '#smstr': $('#smstr').val(), 
-        '#time': $('#time').val() 
+        'smstr': $('smstr').val(), 
+        'time': $('time').val() 
     };
 
-    $('#smstr').children().not(':first').remove(); //removendo todas as opções de semestre presentes
-    $('#time').children().not(':first').remove(); //removendo todas as opções de período presentes
+    $('smstr').children().not(':first').remove(); //removendo todas as opções de semestre presentes
+    $('time').children().not(':first').remove(); //removendo todas as opções de período presentes
 
-    for (let field of ['#smstr','#time']) { let Fonts = FilterFlds[slctdCourse][field];
-        
+    for (let field of ['smstr','time']) { let Fonts = FilterFlds[slctdCourse][field];        
         for (let font of Fonts) {
             let optTxt = font.toString().toUpperCase();
             let opt = document.createElement("option");
                 opt.setAttribute("value", optTxt);
                 opt.innerHTML = optTxt;
 
-            $(field).prop("disabled", false);
-            $(field).append(opt);
+            $("#" + field).prop("disabled", false);
+            $("#" + field).append(opt);
 
             if (lastSelection[field] === optTxt)
-                $(field).val(optTxt);
-        }
-        
+                $("#" + field).val(optTxt);
+        }        
     } $("#fndBt").attr("disabled", false); //Habilita o botão após selecionar um valor
 });
 
