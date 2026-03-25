@@ -32,3 +32,52 @@ const sources = [
 //Essa é a fonte da informação de última atualização da planilha, caso haja necessidade de alterar, basta colocar o link/endereçoda fonte nessa variável, seguindo o formato chave: valor (chave é o nome da fonte, valor é o link/endereço da fonte)
 const excelLastEditedSource = REMOVIDO; //URL da planilha de informações de última atualização (API ou página pública do Google Sheets)
 // const excelLastEditedSource = "./downloadedSources/atualiza.tsv"; //Links de exemplo para testes offline.
+
+const ignoredExclusiveFilters = {
+    geral: [
+        "",
+        " ",
+        "-",
+        " - ",
+        undefined,
+        null,
+    ],
+    dia: [],
+    hora: [],
+    curso: [],
+    semestre: [
+    ],
+    siga: [],
+    turno: [],
+    materia: [],
+    professor: [],
+    sala: [],
+    info: [],
+}
+
+const ignoredWordFilters = {
+    geral: [],
+    dia: [],
+    hora: [],
+    curso: [
+        "etec",
+        "novotec",
+        "reserv",
+    ],
+    semestre: [
+    ],
+    siga: [],
+    turno: [],
+    materia: [
+        "etec",
+        "novotec",
+        "reserv",
+    ],
+    professor: [
+        "etec",
+        "novotec",
+        "reserv",
+    ],
+    sala: [],
+    info: [],
+}

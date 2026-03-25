@@ -4,67 +4,70 @@ function getFltrsFlds(data) { let ltCourses = new Object(), ltTchr = new Array()
 
 
     for (let line of data) {
-
       if (
         typeof ltCourses[line[clmnHdrs.curso]] === 'undefined' &&
-        !(new RegExp('etec', 'i').test(line[clmnHdrs.curso])) &&
-        !(new RegExp('novotec', 'i').test(line[clmnHdrs.curso])) &&
-        !(new RegExp('reserv', 'i').test(line[clmnHdrs.materia])) &&
-        line[clmnHdrs.curso] != "" &&
-        line[clmnHdrs.curso] != " " &&
-        line[clmnHdrs.curso] != "-" &&
-        line[clmnHdrs.curso] != null
+        !ignoredWordFilters.curso.some(word => new RegExp(word, "i").test(line[clmnHdrs.curso])) &&
+        !ignoredWordFilters.curso.some(word => new RegExp(word, "i").test(line[clmnHdrs.materia])) &&
+        !ignoredExclusiveFilters.geral.some(word => line[clmnHdrs.curso] === word)
       ){ ltCourses[line[clmnHdrs.curso]] = {'smstr': [], 'time': []}; }
         
 
       if (
         typeof ltCourses[line[clmnHdrs.curso]] !== 'undefined' &&
         !ltCourses[line[clmnHdrs.curso]]['smstr'].includes(line[clmnHdrs.semestre]) &&
-        line[clmnHdrs.semestre] != "" &&
-        line[clmnHdrs.semestre] != " " &&
-        line[clmnHdrs.semestre] != "-" &&
-        line[clmnHdrs.semestre] != null
+
+        !ignoredWordFilters.semestre.some(word => new RegExp(word, "i").test(line[clmnHdrs.semestre])) &&
+        !ignoredExclusiveFilters.semestre.some(word => line[clmnHdrs.semestre] === word) &&
+
+        !ignoredWordFilters.geral.some(word => new RegExp(word, "i").test(line[clmnHdrs.semestre])) &&
+        !ignoredExclusiveFilters.geral.some(word => line[clmnHdrs.semestre] === word)
+
       ){ ltCourses[line[clmnHdrs.curso]]['smstr'].push(line[clmnHdrs.semestre]); }
       
 
       if (
         typeof ltCourses[line[clmnHdrs.curso]] !== 'undefined' &&
         !ltCourses[line[clmnHdrs.curso]]['time'].includes(line[clmnHdrs.turno]) &&
-        line[clmnHdrs.turno] != "" &&
-        line[clmnHdrs.turno] != " " &&
-        line[clmnHdrs.turno] != "-" &&
-        line[clmnHdrs.turno] != null
+
+        !ignoredWordFilters.turno.some(word => new RegExp(word, "i").test(line[clmnHdrs.turno])) &&
+        !ignoredExclusiveFilters.turno.some(word => line[clmnHdrs.turno] === word) &&
+
+        !ignoredWordFilters.geral.some(word => new RegExp(word, "i").test(line[clmnHdrs.turno])) &&
+        !ignoredExclusiveFilters.geral.some(word => line[clmnHdrs.turno] === word)
+
       ){ ltCourses[line[clmnHdrs.curso]]['time'].push(line[clmnHdrs.turno]); }
 
 
       if (
-        !(new RegExp('etec', 'i').test(line[clmnHdrs.professor])) &&
-        !(new RegExp('novotec', 'i').test(line[clmnHdrs.professor])) &&
         !ltTchr.includes(line[clmnHdrs.professor]) &&
-        line[clmnHdrs.professor] != "" &&
-        line[clmnHdrs.professor] != " " &&
-        line[clmnHdrs.professor] != "-" &&
-        line[clmnHdrs.professor] != null
+        !ignoredWordFilters.professor.some(word => new RegExp(word, "i").test(line[clmnHdrs.professor])) &&
+        !ignoredExclusiveFilters.professor.some(word => line[clmnHdrs.professor] === word) &&
+
+        !ignoredWordFilters.geral.some(word => new RegExp(word, "i").test(line[clmnHdrs.professor])) &&
+        !ignoredExclusiveFilters.geral.some(word => line[clmnHdrs.professor] === word)
+
       ){ ltTchr.push(line[clmnHdrs.professor]); }
 
 
       if (
         !ltRoom.includes(line[clmnHdrs.sala]) &&
-        line[clmnHdrs.sala] != "" &&
-        line[clmnHdrs.sala] != " " &&
-        line[clmnHdrs.sala] != "-" &&
-        line[clmnHdrs.sala] != null
+
+        !ignoredWordFilters.sala.some(word => new RegExp(word, "i").test(line[clmnHdrs.sala])) &&
+        !ignoredExclusiveFilters.sala.some(word => line[clmnHdrs.sala] === word) &&
+
+        !ignoredWordFilters.geral.some(word => new RegExp(word, "i").test(line[clmnHdrs.sala])) &&
+        !ignoredExclusiveFilters.geral.some(word => line[clmnHdrs.sala] === word)
       ){ ltRoom.push(line[clmnHdrs.sala]); }
 
 
       if (
-        // !(new RegExp('etec', 'i').test(line[clmnHdrs.materia])) &&
-        // !(new RegExp('novotec', 'i').test(line[clmnHdrs.materia])) &&
         !ltClss.includes(line[clmnHdrs.materia]) &&
-        line[clmnHdrs.materia] != "" &&
-        line[clmnHdrs.materia] != " " &&
-        line[clmnHdrs.materia] != "-" &&
-        line[clmnHdrs.materia] != null
+
+        !ignoredWordFilters.materia.some(word => new RegExp(word, "i").test(line[clmnHdrs.materia])) &&
+        !ignoredExclusiveFilters.materia.some(word => line[clmnHdrs.materia] === word) &&
+
+        !ignoredWordFilters.geral.some(word => new RegExp(word, "i").test(line[clmnHdrs.materia])) &&
+        !ignoredExclusiveFilters.geral.some(word => line[clmnHdrs.materia] === word)
       ){ ltClss.push(line[clmnHdrs.materia]); }
     }
 

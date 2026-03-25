@@ -256,8 +256,8 @@ $("#course").change(() => {
         'time': $('time').val() 
     };
 
-    $('smstr').children().not(':first').remove(); //removendo todas as opções de semestre presentes
-    $('time').children().not(':first').remove(); //removendo todas as opções de período presentes
+    $('#smstr').children().not(':first').remove(); //removendo todas as opções de semestre presentes
+    $('#time').children().not(':first').remove(); //removendo todas as opções de período presentes
 
     for (let field of ['smstr','time']) { let Fonts = FilterFlds[slctdCourse][field];        
         for (let font of Fonts) {
