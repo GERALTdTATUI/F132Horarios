@@ -187,9 +187,10 @@ function fndTable(type) { let opts;
     //Armezana a última pesquisa por 2 minutos (caso o usuário saia da página sem querer)
     document.cookie = `prvSrch=${[opts, type]}; max-age=120; samesite=strict;`;
 
-    $(".prsnBox").css("flex-direction", "column"); //Voltam os botões a posição normal
     $('.container').remove(); //Ao fazer uma pesquisa, a tabela anterior é descartada
     formTable(fullData, opts, type, clssSz); // Chama a função para iniciar a criação da tabela
+    
+    $(".prsnBox").css("flex-direction", "column"); //Voltam os botões a posição normal
     hideSrch(true); // Esconde o menu
 }
 

@@ -61,3 +61,11 @@ p, h1, div, a {
     padding: 0;
     flex-basis: 100%;
 }
+
+.SearchArea {
+    width: calc(100% - 40px);
+}
+
+.select_beta * {
+    font-size: x-large;
+}
