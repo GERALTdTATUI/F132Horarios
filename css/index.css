@@ -403,6 +403,9 @@ img {
     color: var(--bkgClr);
     text-align: center;
     /* color: black; */
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none;     /* Internet Explorer/Edge */
+    user-select: none; 
 }
 
 .option_selected_beta {
@@ -427,8 +430,8 @@ img {
 }
 
 .option_beta {
-    padding: 8px;
-    margin-top: 7.5px;
+    padding: 15px;
+    /* margin-top: 7.5px; */
     /* min-height: 50px; */
     align-content: center;
     cursor: pointer;
