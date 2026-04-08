@@ -1,0 +1,5 @@
+const clmnHdrs = "$clmnHdrs"
+const sources = "$sources"
+const excelLastEditedSource = "$excelLastEditedSource"
+const ignoredWordFilters = "$ignoredWordFilters" 
+const ignoredExclusiveFilters = "$ignoredExclusiveFilters"
