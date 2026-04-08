@@ -109,7 +109,7 @@ function fndStdt() { //Função que gera o layout de seleção de curso ao clica
     $("#fndBt").attr("onclick", "fndTable(0)"); //Altera qual função o botão chama
     $("#fndBt").text("Encontrar Horários"); //Muda o texto para "Encontrar Horários"
     
-    if($("#course").prop("selectedIndex") !== 0) { //Reativa 0 botão se os campos já tiverem filtros
+    if($("#course").children("input").val() !== "0") { //Reativa 0 botão se os campos já tiverem filtros
         $("#fndBt").attr("disabled", false);
     }
 }
@@ -124,7 +124,7 @@ function fndTchr() { //Função que gera o layout de seleção de professor ao c
     $("#fndBt").attr("onclick", "fndTable(1)"); //Altera qual função o botão chama
     $("#fndBt").text("Encontrar Horários"); //Muda o texto para "Encontrar Horários"
 
-    if ($("#prof").prop("selectedIndex") !== 0) {//Reativa 0 botão se os campos já tiverem filtros
+    if ($("#prof").children("input").val() !== "0") {//Reativa 0 botão se os campos já tiverem filtros
         $("#fndBt").attr("disabled", false);
     }
 }
@@ -135,7 +135,7 @@ function fndClsR() { //Função que gera o layout de seleção de salas ao clica
     $("#svSch").show();
 
 
-    if ($("#room").prop("selectedIndex") !== 0) { //Reativa 0 botão se os campos já tiverem filtros
+    if ($("#room").children("input").val() !== "0") { //Reativa 0 botão se os campos já tiverem filtros
         $("#fndBt").attr("disabled", false);
         $("#fndBt").attr("onclick", "fndTable(2)"); //Altera qual função o botão chama
     }
@@ -155,7 +155,7 @@ function fndClss() { //Função que gera o layout de seleção de disciplina ao 
     $("#fndBt").attr("onclick", "fndTable(4)"); //Altera qual função o botão chama
     $("#fndBt").text("Encontrar Horários"); //Muda o texto para "Encontrar Horários"
 
-    if ($("#clss").prop("selectedIndex") !== 0) {//Reativa 0 botão se os campos já tiverem filtros
+    if ($("#clss").children("input").val() !== "0") {//Reativa 0 botão se os campos já tiverem filtros
         $("#fndBt").attr("disabled", false);
     }
 }
@@ -166,12 +166,17 @@ function fndTable(type) { let opts;
 
     //Coleta dos critérios baseado no tipo de pesquisa escolhida
     switch(type) {
-        case 0: opts = [$("#course").val(), $("#smstr").val(), $("#time").val()]
+        case 0: 
+            opts = [
+                $("#course").children("input[name=course]").val(),
+                $("#smstr").children("input[name=smstr]").val(),
+                $("#time").children("input[name=time]").val()
+            ];
             for(let opt of opts) if (/--/.test(opt)) return;
         break;
-        case 1: opts = $("#prof").val(); break;
-        case 2: opts = $("#room").val(); break;
-        case 4: opts = $("#clss").val(); break;
+        case 1: opts = $("#prof").children("input[name=prof]").val(); break;
+        case 2: opts = $("#room").children("input[name=room]").val(); break;
+        case 4: opts = $("#clss").children("input[name=clss]").val(); break;
         default: opts = 'Salas Livres'; break;
     }
     
@@ -214,6 +219,41 @@ $(document).ready(() => {
 
 
 
+    
+
+    const selectBoxes = document.querySelectorAll(".select_beta");
+    
+    selectBoxes.forEach(select => select.addEventListener("click", () => {
+        const options = select.querySelector(".options_beta");
+
+        if (select.getAttribute("data-disabled") === "true") return
+        options.style.display = options.style.display === "block" ? "none" : "block";
+    }));
+
+    document.addEventListener("click", (e) => {
+        const itObj = e.target
+
+        if (itObj.closest(".option_beta")) {
+
+            const grampaEl = itObj.parentElement.parentElement;
+            grampaEl.querySelector(".option_selected_beta").textContent = itObj.textContent;
+
+            grampaEl.querySelector(`input[name=${grampaEl.id}`).value = itObj.dataset.value;
+            itObj.parentElement.style.display = "none";
+
+            grampaEl.dispatchEvent(new Event("change"))
+        }
+
+        if (itObj.closest(".option_selected_beta")) {
+            document.querySelectorAll(".select_beta").forEach(slt => {
+                if (itObj.parentElement === slt) return;
+                $(slt).children(".options_beta").css("display", "none")
+            })
+        }
+    })
+
+
+
 
     //Função para ajustar o tamanho da viewport e de elementos relacionados ao redimensionar a janela ou ao carregar a página
     function windRsz() { let vwptSz = [window.innerHeight, window.devicePixelRatio];
@@ -250,29 +290,63 @@ $("#course").change(() => {
     para evitar filtros não disponíveis
     */
 
-    let slctdCourse = $("#course").val(); //Identificando o curso selecionado pelo user
+    let slctdCourse = $(`#course`).children("input").val(); //Identificando o curso selecionado pelo user
     let lastSelection = { //identificando o último semestre e período selecionados
-        'smstr': $('smstr').val(), 
-        'time': $('time').val() 
+        'smstr': $('#smstr').children("input").val(), 
+        'time': $('#time').children("input").val() 
     };
 
-    $('#smstr').children().not(':first').remove(); //removendo todas as opções de semestre presentes
-    $('#time').children().not(':first').remove(); //removendo todas as opções de período presentes
+    $('#smstr').children(".option_selected_beta").text("-- Semestre --"); //removendo todas as opções de semestre presentes
+    $('#smstr').children(".options_beta").children().remove(); //removendo todas as opções de semestre presentes
+    
+    $('#time').children(".option_selected_beta").text("-- Período --"); //removendo todas as opções de período presentes
+    $('#time').children(".options_beta").children().remove(); //removendo todas as opções de período presentes
 
     for (let field of ['smstr','time']) { let Fonts = FilterFlds[slctdCourse][field];        
         for (let font of Fonts) {
             let optTxt = font.toString().toUpperCase();
-            let opt = document.createElement("option");
-                opt.setAttribute("value", optTxt);
-                opt.innerHTML = optTxt;
+            let opt = document.createElement("div");
+                opt.classList.add("option_beta");
+                opt.dataset.value = optTxt;
+                opt.textContent = optTxt;
 
-            $("#" + field).prop("disabled", false);
-            $("#" + field).append(opt);
+            $("#" + field).attr("data-disabled", "false");
+            $("#" + field).children(".options_beta").append(opt);
 
-            if (lastSelection[field] === optTxt)
-                $("#" + field).val(optTxt);
+            if (lastSelection[field] === optTxt) {
+                $("#" + field).children(".option_selected_beta").text(optTxt);
+                $("#" + field).children("inputd").val(optTxt);
+            }
         }        
-    } $("#fndBt").attr("disabled", false); //Habilita o botão após selecionar um valor
+    }
+    
+    if (![
+            $("#course").children("input").val(),
+            $("#smstr").children("input").val(),
+            $("#time").children("input").val()
+        ].includes("0")
+    )
+    $("#fndBt").attr("disabled", false); //Habilita o botão após selecionar um valor
+});
+
+$("#smstr").change(() => {
+    if (![
+            $("#course").children("input").val(),
+            $("#smstr").children("input").val(),
+            $("#time").children("input").val()
+        ].includes("0")
+    )
+    $("#fndBt").attr("disabled", false); //Habilita o botão após selecionar um valor
+});
+
+$("#time").change(() => {
+    if (![
+            $("#course").children("input").val(),
+            $("#smstr").children("input").val(),
+            $("#time").children("input").val()
+        ].includes("0")
+    )
+    $("#fndBt").attr("disabled", false); //Habilita o botão após selecionar um valor
 });
 
 // Trigger de campos do professor

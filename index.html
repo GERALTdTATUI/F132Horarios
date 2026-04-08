@@ -80,38 +80,50 @@
         
         <!--    ÁREA DO ALUNO    -->
         <div class="sltAll" id="sltAll" hidden>
-            <select class="slt" id="course">
-                <option selected hidden>-- Curso --</option>
-            </select>
+            <div class="select_beta" id="course">
+                <div class="option_selected_beta">-- Curso --</div>
+                <div class="options_beta"></div>
+                <input type="hidden" name="course" value="0">
+            </div>
 
-            <select class="slt" id="smstr" disabled>
-                <option selected hidden>-- Semestre --</option>
-            </select>
+            <div class="select_beta" id="smstr" data-disabled="true">
+                <div class="option_selected_beta">-- Semestre --</div>
+                <div class="options_beta"></div>
+                <input type="hidden" name="smstr" value="0">
+            </div>
 
-            <select class="slt" id="time" disabled>
-                <option selected hidden>-- Período --</option>
-            </select>
+            <div class="select_beta" id="time" data-disabled="true">
+                <div class="option_selected_beta">-- Período --</div>
+                <div class="options_beta"></div>
+                <input type="hidden" name="time" value="0">
+            </div>
             <!--    FIM DA ÁREA DO ALUNO   -->
 
 
             <!--    ÁREA DO PROFESSOR   -->
-            <select class="slt" id="prof">
-                <option selected hidden>-- Professor --</option>
-            </select>
+            <div class="select_beta" id="prof">
+                <div class="option_selected_beta">-- Professor --</div>
+                <div class="options_beta"></div>
+                <input type="hidden" name="prof" value="0">
+            </div>
             <!--    FIM DA ÁREA DO PROFESSOR   -->
 
 
             <!--    ÁREA POR SALA    -->
-            <select class="slt" id="room">
-                <option selected hidden>-- Sala --</option>
-            </select>
+            <div class="select_beta" id="room">
+                <div class="option_selected_beta">-- Sala --</div>
+                <div class="options_beta"></div>
+                <input type="hidden" name="room" value="0">
+            </div>
             <!--    FIM DA ÁREA POR SALA   -->
 
 
             <!--    ÁREA POR DISCIPLINA    -->
-            <select class="slt" id="clss">
-                <option selected hidden>-- Disciplina --</option>
-            </select>
+            <div class="select_beta" id="clss">
+                <div class="option_selected_beta">-- Disciplina --</div>
+                <div class="options_beta"></div>
+                <input type="hidden" name="clss" value="0">
+            </div>
             <!--    FIM DA ÁREA POR DISCIPLINA   -->
 
             <!--    BOTÂO PARA SALVAR A PESQUISA -->
@@ -141,5 +153,12 @@
             <p id="updtTime"></p>
         </div>
     </div>
+
+
+    <style>    
+
+        
+    </style>
+
 </body>
 </html>

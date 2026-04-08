@@ -73,24 +73,30 @@ function getFltrsFlds(data) { let ltCourses = new Object(), ltTchr = new Array()
 
 
     ltTchr.sort().forEach(tchr => {
-      let optItem = document.createElement("option");
-      optItem.value = tchr; optItem.innerHTML += tchr;
+      let optItem = document.createElement("div");
+      optItem.classList.add("option_beta");
+      optItem.dataset.value = tchr;
+      optItem.innerHTML += tchr;
     
-      $('#prof').append(optItem);
+      $('#prof').children(".options_beta").append(optItem);
     });
 
     ltRoom.sort().forEach(room => {
-      let optItem = document.createElement("option");
-      optItem.value = room; optItem.innerHTML += room;
+      let optItem = document.createElement("div");
+      optItem.classList.add("option_beta");
+      optItem.dataset.value = room;
+      optItem.innerHTML += room;
     
-      $('#room').append(optItem);
+      $('#room').children(".options_beta").append(optItem);
     });
 
     ltClss.sort().forEach(clss => {
-      let optItem = document.createElement("option");
-      optItem.value = clss; optItem.innerHTML += clss;
+      let optItem = document.createElement("div");
+      optItem.classList.add("option_beta");
+      optItem.dataset.value = clss;
+      optItem.innerHTML += clss;
     
-      $('#clss').append(optItem);
+      $('#clss').children(".options_beta").append(optItem);
     });
 
     // console.log();
@@ -203,10 +209,12 @@ function createFilterObjectItems (filtersArray) {
 
   Object.keys(filtersArray).sort().forEach(key => {
     
-    let optItem = document.createElement("option");
-    optItem.value = key; optItem.innerHTML += key;
+    let optItem = document.createElement("div");
+    optItem.classList.add("option_beta");
+    optItem.dataset.value = key;
+    optItem.innerHTML += key;
   
-    $('#course').append(optItem);
+    $('#course').children(".options_beta").append(optItem);
 
     filtersArray[key]['smstr'].sort();
     filtersArray[key]['time'].sort();
