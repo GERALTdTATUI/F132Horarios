@@ -204,12 +204,13 @@ function resetSavedSearch() {
 // Triggers
 //Trigger para detecar se a página vai carregar com, ou sem, o filtro de professores
 $(document).ready(() => {
-    const f132OGfilters = sessionStorage.getItem("f132OGfilters");
+    const f132OGfilters = localStorage.getItem("f132OGfilters");
     const urlParams = new URLSearchParams(window.location.search);
     const teacherFilter = urlParams.get("teacherFilterEnable");
     
     //Se a variável "teacherFilterEnable" for 1, ele habilita o filtro de professores
     if (f132OGfilters || teacherFilter){
+        localStorage.setItem("f132OGfilters", "1");
         $("#prsnBt3").show();
         $("#prsnBt4").show();
     }
