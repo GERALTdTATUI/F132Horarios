@@ -6,6 +6,10 @@ function formTable(table, filters, type, size) {
   //type = tipo de pesquisa (0 - pesquisa de curso, usando 3 critérios: turma, semestre e turno)
   //size = variável extra, retorna a quantidade de cadeiras disponível em uma sala (apenas para a pesquisa de sala)
 
+  type = filters !== "Salas Livres" ? type : 3 
+
+  console.log(filters, type)
+
   //Identificando qual tipo de pesquisa foi feita pelo usuário
   let info;
   switch (type) {
@@ -211,22 +215,24 @@ function formColumnsVacancy(data, hours, days, allClss, columns) {
       let vacancyBlk = document.createElement('div');
       vacancyBlk.setAttribute("class", "ClassEmpty");
 
-      for (let line of data){
-        if (line[clmnHdrs.dia].slice(5) == day && line[clmnHdrs.hora] == hour) {
-          usedClss.push(line['local de aula']);
-        }
+      for (let line of data) {
+        if (line[clmnHdrs.dia].slice(5) == day && line[clmnHdrs.hora] == hour)
+          line[clmnHdrs.materia] !== '' && usedClss.push(line['local de aula']);
       }
       
-      usedClss = allClss.filter(x => !usedClss.includes(x));
+      const non_usedClss = allClss.filter(x => !usedClss.includes(x));
 
-      if (usedClss.length) vacancyBlk.setAttribute("class", "Classes");
+      if (non_usedClss.length) vacancyBlk.setAttribute("class", "Classes");
 
 
-      for(let clss of usedClss) {
+      for(let clss of non_usedClss) {
         let ClssTtl = document.createElement('h1');
         ClssTtl.innerHTML = clss;
+        ClssTtl.style.marginBottom = "50px";
         vacancyBlk.append(ClssTtl);
       }
+
+      console.log("Todos: ",allClss, "EmUso:", usedClss, "Livres:", non_usedClss)
 
       clssColumn.append(vacancyBlk);
     } columns.append(clssColumn); 
@@ -353,32 +359,30 @@ function getInfoSingle(data, atrr) {
 
 //Essa função retorna três arrays (ltHours, ltWdays), com os dias, horários e salas disponíveis (não utilizado)
 function getInfoVacancy(data, atrr) {
-  let ltHours = new Array(), ltWdays = new Array(), ltCours = new Array();
-  resultTable = new Array()
+  let ltHours = new Array(), ltWdays = new Array(), ltClssR = new Array();
+  resultTable = data
 
   for (let line of data) {
     // console.log(line);
-    if (line[clmnHdrs.materia] == ''){
-
-      resultTable.push(line);
+    if (line[clmnHdrs.materia] == '') {
 
       if (!ltWdays.includes(line[clmnHdrs.dia].slice(5)))
         ltWdays.push(line[clmnHdrs.dia].slice(5));
       if (!ltHours.includes(line[clmnHdrs.hora]))
         ltHours.push(line[clmnHdrs.hora]);
-      if (!ltCours.includes(line[clmnHdrs.sala]))
-        ltCours.push(line[clmnHdrs.sala]);
+      if (!ltClssR.includes(line[clmnHdrs.sala]))
+        ltClssR.push(line[clmnHdrs.sala]);
     }
   }
 
-  ltWdays.sort(); ltHours.sort(); ltCours.sort();
+  ltHours.sort(); ltClssR.sort(); ltWdays = sortWeekdays(ltWdays);
 
-  if (!ltHours.length || !ltWdays.length || !ltCours.length){
+  if (!ltHours.length || !ltWdays.length || !ltClssR.length){
     console.error("Horários não encontrados", atrr)
     return alert("Não há horários para essa seleção");
   }
 
-  return [ltCours, ltHours,  ltWdays = sortWeekdays(ltWdays)];
+  return [ltHours,  ltWdays, ltClssR];
 }
 
 function sortWeekdays(weekdays) {

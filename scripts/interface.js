@@ -95,7 +95,7 @@ function hideSrch(clickOff) { //Comando para ocultar o balão de seleção de cu
 function showList(focus) {
     switch (focus){
         case 1: alert(); $('#tchrList')[0].style.display = 'block'; break
-        default: console.log(); $('#tchrList')[0].style.display = 'none'; break
+        default: $('#tchrList')[0].style.display = 'none'; break
     }
 }
 
@@ -124,7 +124,7 @@ function fndTchr() { //Função que gera o layout de seleção de professor ao c
     $("#fndBt").attr("onclick", "fndTable(1)"); //Altera qual função o botão chama
     $("#fndBt").text("Encontrar Horários"); //Muda o texto para "Encontrar Horários"
 
-    if ($("#prof").children("input").val() !== "0") {//Reativa 0 botão se os campos já tiverem filtros
+    if ($("#prof").children("input").val() !== "0") {//Reativa o botão se os campos já tiverem filtros
         $("#fndBt").attr("disabled", false);
     }
 }
@@ -133,17 +133,32 @@ function fndClsR() { //Função que gera o layout de seleção de salas ao clica
     $("#sltAll").show().children().hide();
     $("#room").show(); $("#fndBt").show();
     $("#svSch").show();
+    
+    $("#fndBt").attr("onclick", "fndTable(2)"); //Altera qual função o botão chama
+    $("#fndBt").text("Encontrar Horários"); //Muda o texto para "Encontrar Horários"
 
-
-    if ($("#room").children("input").val() !== "0") { //Reativa 0 botão se os campos já tiverem filtros
+    if ($("#room").children("input").val() !== "0") { //Reativa o botão se os campos já tiverem filtros
         $("#fndBt").attr("disabled", false);
+    }
+}
+
+/* Função Legado - DASATIVADA
+
+function fndClsR() { //Função que gera o layout de seleção de salas ao clicar no botão "SALAS"
+    $("#sltAll").show().children().hide();
+    $("#room").show(); $("#fndBt").show();
+    $("#svSch").show();
+    $("#fndBt").attr("disabled", false);
+
+
+    if ($("#room").children("input").val() !== "0") { //Altera a função do botão caso um filtro seja
         $("#fndBt").attr("onclick", "fndTable(2)"); //Altera qual função o botão chama
     }
     else {
         $("#fndBt").attr("onclick", "fndTable(3)"); //Altera qual função o botão chama
         $("#fndBt").text("Salas livres"); //Muda o texto para "Salas Livres" (não utilizado)
     }
-}
+} */
 
 function fndClss() { //Função que gera o layout de seleção de disciplina ao clicar no botão "DISCIPLINA"
     $("#sltAll").show().children().hide();
@@ -177,7 +192,7 @@ function fndTable(type) { let opts;
         case 1: opts = $("#prof").children("input[name=prof]").val(); break;
         case 2: opts = $("#room").children("input[name=room]").val(); break;
         case 4: opts = $("#clss").children("input[name=clss]").val(); break;
-        default: opts = 'Salas Livres'; break;
+        // default: opts = 'Salas Livres'; break;
     }
     
     //Salve a pesquisa (indefinidamente) em um cookie caso a opção tenha sido marcada pelo usuário
