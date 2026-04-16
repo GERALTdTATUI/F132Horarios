@@ -19,17 +19,17 @@ const clmnHdrs = { //Coluna para ajuste dos títulos da planilha
 //Essas são as fontes dos dados, caso haja necessidade de alterar as fontes, ou adicionar novas, basta colocar os links/endereços dentro dessa variável, seguindo o formato chave: valor (chave é o nome da fonte, valor é o link/endereço da fonte)
 const sources = [
     {
-        URL: `./downloadedSources/grade.tsv`, //Links de exemplo para testes offline.
+        URL: `./exemple_sources/grade.tsv`, //Links de exemplo para testes offline.
         FileType: "tsv", //Tipo do arquivo da planilha de horários (pode ser "tsv", "csv" ou "json")
     },
     {
-        URL: `./downloadedSources/agendas.tsv`, //Links de exemplo para testes offline.
+        URL: `./exemple_sources/agendas.tsv`, //Links de exemplo para testes offline.
         FileType: "tsv", //Tipo do arquivo da planilha de agendas (pode ser "tsv", "csv" ou "json")
     }
 ];
 
 //Essa é a fonte da informação de última atualização da planilha, caso haja necessidade de alterar, basta colocar o link/endereçoda fonte nessa variável, seguindo o formato chave: valor (chave é o nome da fonte, valor é o link/endereço da fonte)
-const excelLastEditedSource = "./downloadedSources/atualiza.tsv"; //Links de exemplo para testes offline.
+const excelLastEditedSource = "./exemple_sources/atualiza.tsv"; //Links de exemplo para testes offline.
 
 //LISTAS DE FILTROS PARA DESCARTAS
 // A variáveis abaixo contém listas de palavras para serem filtradas durante o mapeamento dos dados.
