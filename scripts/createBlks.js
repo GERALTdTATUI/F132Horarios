@@ -174,10 +174,28 @@ function formColumns(data, hours, days, atrr, columns, type) {
       if ($(multiClasses).children().length == 1) clssColumn.appendChild(multiClasses.firstElementChild);
 
       //Caso contrário, ele será dividido em frações e suas "crianças" receberão a classe "clssBlkDvd"
-      else {
-        $(multiClasses).children().removeClass();
-        $(multiClasses).children().addClass('clssBlkDvd');
-        clssColumn.appendChild(multiClasses);
+      else {        
+        const newMultclasses = document.createElement('div');
+        newMultclasses.setAttribute('class', 'ClassEmpty')
+
+        Array.from($(multiClasses).children()).forEach((child, index) => {
+          const blkContainer = document.createElement("div");
+          const blkHeader = document.createElement('div');
+          const blkHdrTxt = document.createElement('h1');
+          
+          $(blkContainer).addClass('clssBlkDvdContainer');
+          $(blkHeader).addClass("clssBlkDvdHdr");
+          $(child).attr('class', 'clssBlkDvd');
+
+          blkHdrTxt.innerHTML = $(child).data().value || "SITUAÇÃO " + String.fromCharCode(65 + index);
+
+          blkHeader.appendChild(blkHdrTxt);
+          blkContainer.appendChild(blkHeader);
+          blkContainer.appendChild(child);
+          newMultclasses.appendChild(blkContainer);
+        });
+        
+        clssColumn.appendChild(newMultclasses);
       }
 
       //Caso o dia do loop seja compatível com o dia atual, a classe "TodayClass" será adicionada aos blocos da coluna
@@ -244,6 +262,7 @@ function createClassBlkData(line, type) {
 
   //Criando os objetos bloco e os textos com as informações
   let clssBlk = document.createElement('div');
+  line.turma !== undefined && clssBlk.setAttribute("data-value", line.turma);
 
   let text1 = document.createElement('h1'); text1.innerHTML = line[clmnHdrs.materia]; //Texto com a aula
   let text2 = document.createElement('h1'), clssLocal = line[clmnHdrs.sala]; // Texto com a sala

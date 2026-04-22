@@ -42,7 +42,7 @@
     --TtlHgt: 20px;
 
     /* altura dos blocos da tabela */
-    --blkHgt: 315px;
+    --blkHgt: 400px;
 
     /* Fim das Variáveis */
 }
@@ -95,12 +95,10 @@ img {
 .Hours,
 .Classes,
 .ClassEmpty,
-.clssBlkDvd,
 .infoTitle {
     user-select: none;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     color: #F7F1E5;
     align-items: center;
     padding: 5px;
@@ -109,8 +107,32 @@ img {
     box-shadow: 3px 2px 10px rgba(0, 0, 0, 0.60);
 }
 
+.clssBlkDvdContainer {
+    display: grid;
+    grid-template-rows: .13fr .87fr;
+    gap: 5px;
+    min-height: var(--blkHgt);
+    max-height: var(--blkHgt);
+    min-width: 100%;
+    scroll-snap-align: center;
+    overflow: hidden;
+    margin-bottom: -5px;
+}
+
+.clssBlkDvd {
+    display: grid;
+    align-items: center;
+    min-width: 100%;
+    background-color: var(--bgClss);
+    overflow: auto;
+}
+
+.clssBlkDvdHdr {
+    background-color: var(--bgClss);
+    align-content: center;
+}
+
 .infoTitle {
-    text-align: center;
     background-color: var(--TtlClr);
     height: calc(var(--TtlHgt) + 10px);
     margin: 15px;
@@ -148,6 +170,7 @@ img {
 .Hours {
     background-color: var(--HrBlk);
     box-shadow: -1px 2px 10px rgb(0, 0, 0);
+    justify-content: center;
 }
 
 .multiClassses {
@@ -158,16 +181,11 @@ img {
 }
 
 .Classes,
-.ClassEmpty,
-.clssBlkDvd {
+.ClassEmpty {
+    display: grid;
     background-color: var(--bgClss);
     text-shadow: 0 0 3px black, 0 0 2px black;
     word-wrap: break-word;
-}
-
-.Classes h1,
-.Classes p {
-    margin: auto;
 }
 
 .ClassColumn {
@@ -188,9 +206,9 @@ img {
 
 .pClasses {
     display: none;
-    position: absolute;
+    /* position: absolute; */
     width: 100%;
-    top: 95%;
+    /* top: 95%; */
 }
 
 .space {
@@ -240,36 +258,47 @@ img {
     transition: .2s transform, .1s background-color;
 }
 
+.ClassEmpty {
+    display: flex;
+    flex-direction: row;
+    overflow: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory;
+    gap: 10px;
+}
+
 .Hours {
     margin-left: 0;
     overflow: hidden;
     border: 2px solid transparent;
-}
+} 
 
-.clssBlkDvd {
+/* {
     margin: 0;
     padding: 0;
     overflow: auto;
     overflow-x: hidden;
-}
+} */
 
-.Classes:hover,
-.clssBlkDvd:hover {
-    position: relative;
+.clssBlkDvd:hover,
+.Classes:hover {
+    /* position: relative; */
     z-index: 0;
     background-color: var(--itClss);
+    /* overflow: auto; */
 }
 
-.Classes:hover a,
-.clssBlkDvd:hover a {
+.clssBlkDvd:hover a,
+.Classes:hover a {
     text-decoration: underline;
     pointer-events: all;
 }
 
+.clssBlkDvd:hover .pClasses,
 .Classes:hover .pClasses {
     display: block;
     padding-top: 15%;
-    padding-bottom: 30%;
+    padding-bottom: 15%;
 }
 
 /* Edição da barra de rolagem */
@@ -286,8 +315,9 @@ img {
 }
 
 .Classes::-webkit-scrollbar,
-.clssBlkDvd::-webkit-scrollbar {
+.ClassEmpty::-webkit-scrollbar {
     width: 7.5px;
+    height: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
