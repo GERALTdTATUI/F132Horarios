@@ -274,14 +274,7 @@ function createClassBlkData(line, type) {
   //Rodando as células presente na linha com o compromisso procurando por informações extras
   for (let item in line) {
     if (
-      item != clmnHdrs.materia &&
-      item != clmnHdrs.sala &&
-      item != clmnHdrs.professor &&
-      item != clmnHdrs.curso &&
-      item != clmnHdrs.semestre &&
-      item != clmnHdrs.turno &&
-      item != clmnHdrs.dia &&
-      item != clmnHdrs.hora &&
+      !Object.values(clmnHdrs).includes(item) &&
       item != "siga" &&
       item != "@odata.etag" &&
       item != "iteminternalid" &&

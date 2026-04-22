@@ -13,14 +13,15 @@ const clmnHdrs = { //Coluna para ajuste dos títulos da planilha
     materia: "disciplina", //Título da Coluna com o nome da disciplina/matéria da aula.
     professor: "docente", //Título da Coluna com o nome do professor da aula.
     sala: "local de aula", //Título da Coluna o local/sala da aula.
+    turma: "turma", //Título da Coluna contendo a turma (casos de divisão de turma: Turma A, Turma B).
     info: "informação auxiliar" //(não se preocupar muito, qualquer coluna além das anteriores será considerada como informação adicional)
 }
 
 //Essas são as fontes dos dados, caso haja necessidade de alterar as fontes, ou adicionar novas, basta colocar os links/endereços dentro dessa variável, seguindo o formato chave: valor (chave é o nome da fonte, valor é o link/endereço da fonte)
-const sources = [
+const data_sources = [
     {
-        URL: `./exemple_sources/grade.tsv`, //Links de exemplo para testes offline.
-        FileType: "tsv", //Tipo do arquivo da planilha de horários (pode ser "tsv", "csv" ou "json")
+        URL: `./exemple_sources/grade.csv`, //Links de exemplo para testes offline.
+        FileType: "csv", //Tipo do arquivo da planilha de horários (pode ser "tsv", "csv" ou "json")
     },
     {
         URL: `./exemple_sources/agendas.tsv`, //Links de exemplo para testes offline.
@@ -29,7 +30,11 @@ const sources = [
 ];
 
 //Essa é a fonte da informação de última atualização da planilha, caso haja necessidade de alterar, basta colocar o link/endereçoda fonte nessa variável, seguindo o formato chave: valor (chave é o nome da fonte, valor é o link/endereço da fonte)
-const excelLastEditedSource = "./exemple_sources/atualiza.tsv"; //Links de exemplo para testes offline.
+const excelLastEditedSource = {
+    URL: "./exemple_sources/atualiza.tsv",
+    FileType: "tsv",
+    InfoPosition: [0,1]
+}; //Links de exemplo para testes offline.
 
 //LISTAS DE FILTROS PARA DESCARTAS
 // A variáveis abaixo contém listas de palavras para serem filtradas durante o mapeamento dos dados.
