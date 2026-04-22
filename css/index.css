@@ -297,7 +297,6 @@ img {
 .clssBlkDvd:hover .pClasses,
 .Classes:hover .pClasses {
     display: block;
-    padding-top: 15%;
     padding-bottom: 15%;
 }
 
