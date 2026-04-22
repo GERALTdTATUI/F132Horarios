@@ -1,4 +1,4 @@
-async function schSrcs(sourceList = data_sources) {
+async function schSrcs(sourceList = sources) {
   var dataList = new Array();
   
   try {

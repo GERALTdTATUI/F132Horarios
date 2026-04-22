@@ -18,7 +18,7 @@ const clmnHdrs = { //Coluna para ajuste dos títulos da planilha
 }
 
 //Essas são as fontes dos dados, caso haja necessidade de alterar as fontes, ou adicionar novas, basta colocar os links/endereços dentro dessa variável, seguindo o formato chave: valor (chave é o nome da fonte, valor é o link/endereço da fonte)
-const data_sources = [
+const sources = [
     {
         URL: `./exemple_sources/grade.csv`, //Links de exemplo para testes offline.
         FileType: "csv", //Tipo do arquivo da planilha de horários (pode ser "tsv", "csv" ou "json")
