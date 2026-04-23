@@ -124,7 +124,8 @@ img {
     align-items: center;
     min-width: 100%;
     background-color: var(--bgClss);
-    overflow: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .clssBlkDvdHdr {
