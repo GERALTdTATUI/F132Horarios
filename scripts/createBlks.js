@@ -8,7 +8,7 @@ function formTable(table, filters, type, size) {
 
   type = filters !== "Salas Livres" ? type : 3 
 
-  console.log(filters, type)
+  // console.log(filters, type)
 
   //Identificando qual tipo de pesquisa foi feita pelo usuário
   let info;
@@ -27,7 +27,7 @@ function formTable(table, filters, type, size) {
 
     default: //padrão, ou 1 - pesquisa de professor, disciplina ou sala, usando apenas 1 critério
       info = getInfoSingle(table, filters);
-      console.log(info);
+      // console.log(info);
       if (info[0].size == 0 || info[1].size == 0)
         return;
     break
@@ -250,7 +250,7 @@ function formColumnsVacancy(data, hours, days, allClss, columns) {
         vacancyBlk.append(ClssTtl);
       }
 
-      console.log("Todos: ",allClss, "EmUso:", usedClss, "Livres:", non_usedClss)
+      // console.log("Todos: ",allClss, "EmUso:", usedClss, "Livres:", non_usedClss)
 
       clssColumn.append(vacancyBlk);
     } columns.append(clssColumn); 
