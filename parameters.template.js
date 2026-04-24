@@ -21,5 +21,6 @@ variáveis dentro de parameters.js pelos valores certos seguindo a estrutura des
 const clmnHdrs = "#clmnHdrs#";
 const sources = "#sources#";
 const excelLastEditedSource = "#excelLastEditedSource#";
+const hideFilters = "#hideFilters#"
 const ignoredWordFilters = "#ignoredWordFilters#";
 const ignoredExclusiveFilters = "#ignoredExclusiveFilters#";

@@ -36,7 +36,16 @@ const excelLastEditedSource = {
     InfoPosition: [0,1]
 }; //Links de exemplo para testes offline.
 
-//LISTAS DE FILTROS PARA DESCARTAS
+
+//Lista de oclusão de filtros
+// Qualquer item colocado dentro dessa lista será ocultado na caixa de pesquisa
+const hideFilters = [
+    "sala", //Ocultando o botão pra mostrar os filtro de salas de aula
+    "materia" //Ocultado o botão pra mostrar os filtro de matérias
+]
+
+
+//LISTAS DE FILTROS PARA DESCARTAR
 // A variáveis abaixo contém listas de palavras para serem filtradas durante o mapeamento dos dados.
 // A lista de filtros é case-insensitive, ou seja, maiúsculas e minúsculas não diferem na hora de filtrar
 // Ex: Filtrar "Hello" descarta "Hello", "hello", "hEllO" e qualquer variante possível
