@@ -1,6 +1,4 @@
 function getFltrsFlds(data) { let ltCourses = new Object(), ltTchr = new Array(), ltRoom = new Array(), ltClss = new Array(), Fields = new Object();
-    // console.log(data);
-    // console.time("teste");
 
 
     for (let line of data) {
@@ -9,12 +7,12 @@ function getFltrsFlds(data) { let ltCourses = new Object(), ltTchr = new Array()
         !ignoredWordFilters.curso.some(word => new RegExp(word, "i").test(line[clmnHdrs.curso])) &&
         !ignoredWordFilters.curso.some(word => new RegExp(word, "i").test(line[clmnHdrs.materia])) &&
         !ignoredExclusiveFilters.geral.some(word => line[clmnHdrs.curso] === word)
-      ){ ltCourses[line[clmnHdrs.curso]] = {'smstr': [], 'time': []}; }
+      ){ ltCourses[line[clmnHdrs.curso]] = {'semestre': [], 'turno': []}; }
         
 
       if (
         typeof ltCourses[line[clmnHdrs.curso]] !== 'undefined' &&
-        !ltCourses[line[clmnHdrs.curso]]['smstr'].includes(line[clmnHdrs.semestre]) &&
+        !ltCourses[line[clmnHdrs.curso]]['semestre'].includes(line[clmnHdrs.semestre]) &&
 
         !ignoredWordFilters.semestre.some(word => new RegExp(word, "i").test(line[clmnHdrs.semestre])) &&
         !ignoredExclusiveFilters.semestre.some(word => line[clmnHdrs.semestre] === word) &&
@@ -22,12 +20,12 @@ function getFltrsFlds(data) { let ltCourses = new Object(), ltTchr = new Array()
         !ignoredWordFilters.geral.some(word => new RegExp(word, "i").test(line[clmnHdrs.semestre])) &&
         !ignoredExclusiveFilters.geral.some(word => line[clmnHdrs.semestre] === word)
 
-      ){ ltCourses[line[clmnHdrs.curso]]['smstr'].push(line[clmnHdrs.semestre]); }
+      ){ ltCourses[line[clmnHdrs.curso]]['semestre'].push(line[clmnHdrs.semestre]); }
       
 
       if (
         typeof ltCourses[line[clmnHdrs.curso]] !== 'undefined' &&
-        !ltCourses[line[clmnHdrs.curso]]['time'].includes(line[clmnHdrs.turno]) &&
+        !ltCourses[line[clmnHdrs.curso]]['turno'].includes(line[clmnHdrs.turno]) &&
 
         !ignoredWordFilters.turno.some(word => new RegExp(word, "i").test(line[clmnHdrs.turno])) &&
         !ignoredExclusiveFilters.turno.some(word => line[clmnHdrs.turno] === word) &&
@@ -35,7 +33,7 @@ function getFltrsFlds(data) { let ltCourses = new Object(), ltTchr = new Array()
         !ignoredWordFilters.geral.some(word => new RegExp(word, "i").test(line[clmnHdrs.turno])) &&
         !ignoredExclusiveFilters.geral.some(word => line[clmnHdrs.turno] === word)
 
-      ){ ltCourses[line[clmnHdrs.curso]]['time'].push(line[clmnHdrs.turno]); }
+      ){ ltCourses[line[clmnHdrs.curso]]['turno'].push(line[clmnHdrs.turno]); }
 
 
       if (
@@ -78,7 +76,7 @@ function getFltrsFlds(data) { let ltCourses = new Object(), ltTchr = new Array()
       optItem.dataset.value = tchr;
       optItem.innerHTML += tchr;
     
-      $('#prof').children(".options_beta").append(optItem);
+      $('#professor').children(".options_beta").append(optItem);
     });
 
     ltRoom.sort().forEach(room => {
@@ -87,7 +85,7 @@ function getFltrsFlds(data) { let ltCourses = new Object(), ltTchr = new Array()
       optItem.dataset.value = room;
       optItem.innerHTML += room;
     
-      $('#room').children(".options_beta").append(optItem);
+      $('#sala').children(".options_beta").append(optItem);
     });
 
     ltClss.sort().forEach(clss => {
@@ -96,11 +94,9 @@ function getFltrsFlds(data) { let ltCourses = new Object(), ltTchr = new Array()
       optItem.dataset.value = clss;
       optItem.innerHTML += clss;
     
-      $('#clss').children(".options_beta").append(optItem);
+      $('#materia').children(".options_beta").append(optItem);
     });
 
-    // console.log();
-    // console.timeEnd("teste");
     return createFilterObjectItems(ltCourses);
 }
 
@@ -136,7 +132,7 @@ function getFltrsFldsOG(data) { let ltCourse = new Array(), ltTchr = new Array()
 
       optLabel.append(optItem);
       optLabel.innerHTML += item;
-      $('#course').append(optLabel);
+      $('#curso').append(optLabel);
     }
   
     for (let sms of ltSmstr) {
@@ -152,7 +148,7 @@ function getFltrsFldsOG(data) { let ltCourse = new Array(), ltTchr = new Array()
 
       optLabel.append(optItem);
       optLabel.innerHTML +=  sms;
-      $('smstr').append(optLabel);
+      $('#semestre').append(optLabel);
     }
   
     for (let tm of ltTime) {
@@ -168,7 +164,7 @@ function getFltrsFldsOG(data) { let ltCourse = new Array(), ltTchr = new Array()
 
       optLabel.append(optItem);
       optLabel.innerHTML += tm;
-      $('time').append(optLabel);
+      $('#turno').append(optLabel);
     }
     
     for (let tchr of ltTchr) { let optItem = document.createElement("input");
@@ -184,7 +180,7 @@ function getFltrsFldsOG(data) { let ltCourse = new Array(), ltTchr = new Array()
 
         optLabel.append(optItem);
         optLabel.innerHTML += tchr;
-        $('#prof').append(optLabel);
+        $('#professor').append(optLabel);
       }
     }
     
@@ -200,7 +196,7 @@ function getFltrsFldsOG(data) { let ltCourse = new Array(), ltTchr = new Array()
 
       optLabel.append(optItem);
       optLabel.innerHTML += clss;
-      $('#class').append(optLabel);
+      $('#materia').append(optLabel);
     }
   }
 
@@ -214,10 +210,10 @@ function createFilterObjectItems (filtersArray) {
     optItem.dataset.value = key;
     optItem.innerHTML += key;
   
-    $('#course').children(".options_beta").append(optItem);
+    $('#curso').children(".options_beta").append(optItem);
 
-    filtersArray[key]['smstr'].sort();
-    filtersArray[key]['time'].sort();
+    filtersArray[key]['semestre'].sort();
+    filtersArray[key]['turno'].sort();
 
     nwCourses[key] = filtersArray[key];
 

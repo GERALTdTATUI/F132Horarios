@@ -73,60 +73,60 @@
         </picture>
 
         <div class="prsnBox" id="prsnBox" onclick="$('#prsnBox').css('flex-direction', 'row')">
-            <button id="prsnBt1" class="btP" onclick="fndStdt()">Cursos</button>
-            <button id="prsnBt2" class="btP" onclick="fndTchr()">Professor</button>
-            <button id="prsnBt3" class="btP" onclick="fndClsR()">Sala</button>
-            <button id="prsnBt4" class="btP" onclick="fndClss()">Disciplina</button>
+            <button id="bt-curso" class="btP" onclick="fndStdt()">Cursos</button>
+            <button id="bt-professor" class="btP" onclick="fndTchr()">Professor</button>
+            <button id="bt-sala" class="btP" onclick="fndClsR()">Sala</button>
+            <button id="bt-materia" class="btP" onclick="fndClss()">Disciplina</button>
         </div>
         
         <!--    ÁREA DO ALUNO    -->
         <div class="sltAll" id="sltAll" hidden>
-            <div class="select_beta" id="course">
+            <div class="select_beta" id="curso">
                 <div class="option_selected_beta">-- Curso --</div>
                 <div class="options_beta"></div>
-                <input type="hidden" name="course" value="0">
+                <input type="hidden" name="curso" value="0">
             </div>
 
-            <div class="select_beta" id="smstr" data-disabled="true">
+            <div class="select_beta" id="semestre" data-disabled="true">
                 <div class="option_selected_beta">-- Semestre --</div>
                 <div class="options_beta"></div>
-                <input type="hidden" name="smstr" value="0">
+                <input type="hidden" name="semestre" value="0">
             </div>
 
-            <div class="select_beta" id="time" data-disabled="true">
+            <div class="select_beta" id="turno" data-disabled="true">
                 <div class="option_selected_beta">-- Período --</div>
                 <div class="options_beta"></div>
-                <input type="hidden" name="time" value="0">
+                <input type="hidden" name="turno" value="0">
             </div>
             <!--    FIM DA ÁREA DO ALUNO   -->
 
 
             <!--    ÁREA DO PROFESSOR   -->
-            <div class="select_beta" id="prof">
+            <div class="select_beta" id="professor">
                 <div class="option_selected_beta">-- Professor --</div>
                 <div class="options_beta"></div>
-                <input type="hidden" name="prof" value="0">
+                <input type="hidden" name="professor" value="0">
             </div>
             <!--    FIM DA ÁREA DO PROFESSOR   -->
 
 
             <!--    ÁREA POR SALA    -->
-            <div class="select_beta" id="room">
+            <div class="select_beta" id="sala">
                 <div class="option_selected_beta">-- Sala --</div>
                 <div class="options_beta">
                     <!-- Função_beta -->
                     <div class="option_beta" data-value="Salas Livres">Salas Livres</div>
                 </div>
-                <input type="hidden" name="room" value="0">
+                <input type="hidden" name="sala" value="0">
             </div>
             <!--    FIM DA ÁREA POR SALA   -->
 
 
             <!--    ÁREA POR DISCIPLINA    -->
-            <div class="select_beta" id="clss">
+            <div class="select_beta" id="materia">
                 <div class="option_selected_beta">-- Disciplina --</div>
                 <div class="options_beta"></div>
-                <input type="hidden" name="clss" value="0">
+                <input type="hidden" name="materia" value="0">
             </div>
             <!--    FIM DA ÁREA POR DISCIPLINA   -->
 

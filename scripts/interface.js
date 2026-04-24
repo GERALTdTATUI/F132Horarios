@@ -2,9 +2,9 @@ var schPreferences;
 
 //Define se o tema é escuro ou claro
 function chgTheme(bt) { let cssVars = document.querySelector(':root').style;
-    if (typeof(bt) === "object") switch (cookies.thmPref) {
-        case "light": cookies.thmPref = "dark"; break;
-        default: cookies.thmPref = "light"; break;
+    if (typeof(bt) === 'object') switch (cookies.thmPref) {
+        case 'light': cookies.thmPref = 'dark'; break;
+        default: cookies.thmPref = 'light'; break;
     }
 
     if (cookies.thmPref === 'light') { //LightTheme
@@ -55,39 +55,39 @@ function hideSrch(clickOff) { //Comando para ocultar o balão de seleção de cu
 
     if (clickOff) {        
         setTimeout(() => {
-            $("#schAra").children().hide()
-            $("#schAra").children("#srcImg").show()
+            $('#schAra').children().hide()
+            $('#schAra').children('#srcImg').show()
         }, 75);
 
-        $("#schAraBkg").hide();
-        $("#fndBt").attr("disabled", true);
-        $("#lastChangeStatus").css("padding-right", btSize + 30);
+        $('#schAraBkg').hide();
+        $('#fndBt').attr('disabled', true);
+        $('#lastChangeStatus').css('padding-right', btSize + 30);
 
         $('#prsnBox').css('flex-direction', 'column');
 
-        $("#schAra").height($("#schAra").height());
-        $("#schAra").height(btSize);
-        $("#schAra").width(btSize);
+        $('#schAra').height($('#schAra').height());
+        $('#schAra').height(btSize);
+        $('#schAra').width(btSize);
         
-        $("#schAra").addClass("SearchAreaOff");
+        $('#schAra').addClass('SearchAreaOff');
     }
 
     else {        
         setTimeout(() => {
-            $("#schAra").children("#srcImg").hide()
-            $("#schAra").children("#Flgs").show()
-            $("#schAra").children(".prsnBox").show()
+            $('#schAra').children('#srcImg').hide()
+            $('#schAra').children('#Flgs').show()
+            $('#schAra').children('.prsnBox').show()
             
-            $("#schAra").height("")
-            $("#schAra").width("")
+            $('#schAra').height('')
+            $('#schAra').width('')
         }, 100)
-        $("#schAra").height(400)
-        $("#schAra").width(400)
+        $('#schAra').height(400)
+        $('#schAra').width(400)
 
-        $("#schAraBkg").show();
-        $("#lastChangeStatus").css("padding-right", "0");
+        $('#schAraBkg').show();
+        $('#lastChangeStatus').css('padding-right', '0');
 
-        $("#schAra").removeClass("SearchAreaOff");
+        $('#schAra').removeClass('SearchAreaOff');
     }
 }
 
@@ -100,78 +100,78 @@ function showList(focus) {
 }
 
 
-function fndStdt() { //Função que gera o layout de seleção de curso ao clicar no botão "ALUNO"
-    $("#sltAll").show().children().show();
-    $("#prof").hide(); $("#room").hide(); $("#clss").hide(); $("#tchrList").hide();
-    $("#fndBt").show();
-    $("#sltAll").css("display", "flex");
+function fndStdt() { //Função que gera o layout de seleção de curso ao clicar no botão 'ALUNO'
+    $('#sltAll').show().children().show();
+    $('#professor').hide(); $('#sala').hide(); $('#materia').hide(); $('#tchrList').hide();
+    $('#fndBt').show();
+    $('#sltAll').css('display', 'flex');
 
-    $("#fndBt").attr("onclick", "fndTable(0)"); //Altera qual função o botão chama
-    $("#fndBt").text("Encontrar Horários"); //Muda o texto para "Encontrar Horários"
+    $('#fndBt').attr('onclick', 'fndTable(0)'); //Altera qual função o botão chama
+    $('#fndBt').text('Encontrar Horários'); //Muda o texto para 'Encontrar Horários'
     
-    if($("#course").children("input").val() !== "0") { //Reativa 0 botão se os campos já tiverem filtros
-        $("#fndBt").attr("disabled", false);
+    if($('#curso').children('input').val() !== '0') { //Reativa 0 botão se os campos já tiverem filtros
+        $('#fndBt').attr('disabled', false);
     }
 }
 
-function fndTchr() { //Função que gera o layout de seleção de professor ao clicar no botão "PROFESSOR"
-    $("#sltAll").show().children().hide();
-    $("#prof").show(); $("#fndBt").show();
-    $("#svSch").show();
+function fndTchr() { //Função que gera o layout de seleção de professor ao clicar no botão 'PROFESSOR'
+    $('#sltAll').show().children().hide();
+    $('#professor').show(); $('#fndBt').show();
+    $('#svSch').show();
 
-    $("#sltAll").css("display", "flex");
+    $('#sltAll').css('display', 'flex');
 
-    $("#fndBt").attr("onclick", "fndTable(1)"); //Altera qual função o botão chama
-    $("#fndBt").text("Encontrar Horários"); //Muda o texto para "Encontrar Horários"
+    $('#fndBt').attr('onclick', 'fndTable(1)'); //Altera qual função o botão chama
+    $('#fndBt').text('Encontrar Horários'); //Muda o texto para 'Encontrar Horários'
 
-    if ($("#prof").children("input").val() !== "0") {//Reativa o botão se os campos já tiverem filtros
-        $("#fndBt").attr("disabled", false);
+    if ($('#professor').children('input').val() !== '0') {//Reativa o botão se os campos já tiverem filtros
+        $('#fndBt').attr('disabled', false);
     }
 }
 
-function fndClsR() { //Função que gera o layout de seleção de salas ao clicar no botão "SALAS"
-    $("#sltAll").show().children().hide();
-    $("#room").show(); $("#fndBt").show();
-    $("#svSch").show();
+function fndClsR() { //Função que gera o layout de seleção de salas ao clicar no botão 'SALAS'
+    $('#sltAll').show().children().hide();
+    $('#sala').show(); $('#fndBt').show();
+    $('#svSch').show();
     
-    $("#fndBt").attr("onclick", "fndTable(2)"); //Altera qual função o botão chama
-    $("#fndBt").text("Encontrar Horários"); //Muda o texto para "Encontrar Horários"
+    $('#fndBt').attr('onclick', 'fndTable(2)'); //Altera qual função o botão chama
+    $('#fndBt').text('Encontrar Horários'); //Muda o texto para 'Encontrar Horários'
 
-    if ($("#room").children("input").val() !== "0") { //Reativa o botão se os campos já tiverem filtros
-        $("#fndBt").attr("disabled", false);
+    if ($('#sala').children('input').val() !== '0') { //Reativa o botão se os campos já tiverem filtros
+        $('#fndBt').attr('disabled', false);
     }
 }
 
 /* Função Legado - DASATIVADA
 
-function fndClsR() { //Função que gera o layout de seleção de salas ao clicar no botão "SALAS"
-    $("#sltAll").show().children().hide();
-    $("#room").show(); $("#fndBt").show();
-    $("#svSch").show();
-    $("#fndBt").attr("disabled", false);
+function fndClsR() { //Função que gera o layout de seleção de salas ao clicar no botão 'SALAS'
+    $('#sltAll').show().children().hide();
+    $('#sala').show(); $('#fndBt').show();
+    $('#svSch').show();
+    $('#fndBt').attr('disabled', false);
 
 
-    if ($("#room").children("input").val() !== "0") { //Altera a função do botão caso um filtro seja
-        $("#fndBt").attr("onclick", "fndTable(2)"); //Altera qual função o botão chama
+    if ($('#sala').children('input').val() !== '0') { //Altera a função do botão caso um filtro seja
+        $('#fndBt').attr('onclick', 'fndTable(2)'); //Altera qual função o botão chama
     }
     else {
-        $("#fndBt").attr("onclick", "fndTable(3)"); //Altera qual função o botão chama
-        $("#fndBt").text("Salas livres"); //Muda o texto para "Salas Livres" (não utilizado)
+        $('#fndBt').attr('onclick', 'fndTable(3)'); //Altera qual função o botão chama
+        $('#fndBt').text('Salas livres'); //Muda o texto para 'Salas Livres' (não utilizado)
     }
 } */
 
-function fndClss() { //Função que gera o layout de seleção de disciplina ao clicar no botão "DISCIPLINA"
-    $("#sltAll").show().children().hide();
-    $("#clss").show(); $("#fndBt").show();
-    $("#svSch").show();
+function fndClss() { //Função que gera o layout de seleção de disciplina ao clicar no botão 'DISCIPLINA'
+    $('#sltAll').show().children().hide();
+    $('#materia').show(); $('#fndBt').show();
+    $('#svSch').show();
 
-    $("#sltAll").css("display", "flex");
+    $('#sltAll').css('display', 'flex');
 
-    $("#fndBt").attr("onclick", "fndTable(4)"); //Altera qual função o botão chama
-    $("#fndBt").text("Encontrar Horários"); //Muda o texto para "Encontrar Horários"
+    $('#fndBt').attr('onclick', 'fndTable(4)'); //Altera qual função o botão chama
+    $('#fndBt').text('Encontrar Horários'); //Muda o texto para 'Encontrar Horários'
 
-    if ($("#clss").children("input").val() !== "0") {//Reativa 0 botão se os campos já tiverem filtros
-        $("#fndBt").attr("disabled", false);
+    if ($('#materia').children('input').val() !== '0') {//Reativa 0 botão se os campos já tiverem filtros
+        $('#fndBt').attr('disabled', false);
     }
 }
 
@@ -183,15 +183,15 @@ function fndTable(type) { let opts;
     switch(type) {
         case 0: 
             opts = [
-                $("#course").children("input[name=course]").val(),
-                $("#smstr").children("input[name=smstr]").val(),
-                $("#time").children("input[name=time]").val()
+                $('#curso').children(`input[name=curso]`).val(),
+                $('#semestre').children(`input[name=semestre]`).val(),
+                $('#turno').children(`input[name=turno]`).val()
             ];
             for(let opt of opts) if (/--/.test(opt)) return;
         break;
-        case 1: opts = $("#prof").children("input[name=prof]").val(); break;
-        case 2: opts = $("#room").children("input[name=room]").val(); break;
-        case 4: opts = $("#clss").children("input[name=clss]").val(); break;
+        case 1: opts = $('#professor').children('input[name=professor]').val(); break;
+        case 2: opts = $('#sala').children('input[name=sala]').val(); break;
+        case 4: opts = $('#materia').children('input[name=materia]').val(); break;
         // default: opts = 'Salas Livres'; break;
     }
     
@@ -205,7 +205,7 @@ function fndTable(type) { let opts;
     $('.container').remove(); //Ao fazer uma pesquisa, a tabela anterior é descartada
     formTable(fullData, opts, type, clssSz); // Chama a função para iniciar a criação da tabela
     
-    $(".prsnBox").css("flex-direction", "column"); //Voltam os botões a posição normal
+    $('.prsnBox').css('flex-direction', 'column'); //Voltam os botões a posição normal
     hideSrch(true); // Esconde o menu
 }
 
@@ -219,52 +219,50 @@ function resetSavedSearch() {
 // Triggers
 //Trigger para detecar se a página vai carregar com, ou sem, o filtro de professores
 $(document).ready(() => {
-    const f132OGfilters = localStorage.getItem("f132OGfilters");
+    const f132OGfilters = localStorage.getItem('f132OGfilters');
     const urlParams = new URLSearchParams(window.location.search);
-    const teacherFilter = urlParams.get("teacherFilterEnable");
+    const teacherFilter = urlParams.get('teacherFilterEnable');
+
+    if (hideFilters) {
+        hideFilters.forEach(filter => {
+            $('#bt-' + filter).hide();
+        })
+    }
     
-    //Se a variável "teacherFilterEnable" for 1, ele habilita o filtro de professores
+    //Se a variável 'teacherFilterEnable' for 1, ele habilita o filtro de professores
     if (f132OGfilters || teacherFilter){
-        localStorage.setItem("f132OGfilters", "1");
-        $("#prsnBt3").show();
-        $("#prsnBt4").show();
+        localStorage.setItem('f132OGfilters', '1');
+        $('#prsnBox').children().show()
     }
-    else {
-        $("#prsnBt3").hide();
-        $("#prsnBt4").hide();
-    }
-
-
-
     
 
-    const selectBoxes = document.querySelectorAll(".select_beta");
+    const selectBoxes = document.querySelectorAll('.select_beta');
     
-    selectBoxes.forEach(select => select.addEventListener("click", () => {
-        const options = select.querySelector(".options_beta");
+    selectBoxes.forEach(select => select.addEventListener('click', () => {
+        const options = select.querySelector('.options_beta');
 
-        if (select.getAttribute("data-disabled") === "true") return
-        options.style.display = options.style.display === "block" ? "none" : "block";
+        if (select.getAttribute('data-disabled') === 'true') return
+        options.style.display = options.style.display === 'block' ? 'none' : 'block';
     }));
 
-    document.addEventListener("click", (e) => {
+    document.addEventListener('click', (e) => {
         const itObj = e.target
 
-        if (itObj.closest(".option_beta")) {
+        if (itObj.closest('.option_beta')) {
 
             const grampaEl = itObj.parentElement.parentElement;
-            grampaEl.querySelector(".option_selected_beta").textContent = itObj.textContent;
+            grampaEl.querySelector('.option_selected_beta').textContent = itObj.textContent;
 
             grampaEl.querySelector(`input[name=${grampaEl.id}`).value = itObj.dataset.value;
-            itObj.parentElement.style.display = "none";
+            itObj.parentElement.style.display = 'none';
 
-            grampaEl.dispatchEvent(new Event("change"))
+            grampaEl.dispatchEvent(new Event('change'))
         }
 
-        if (itObj.closest(".option_selected_beta")) {
-            document.querySelectorAll(".select_beta").forEach(slt => {
+        if (itObj.closest('.option_selected_beta')) {
+            document.querySelectorAll('.select_beta').forEach(slt => {
                 if (itObj.parentElement === slt) return;
-                $(slt).children(".options_beta").css("display", "none")
+                $(slt).children('.options_beta').css('display', 'none')
             })
         }
     })
@@ -276,7 +274,7 @@ $(document).ready(() => {
     function windRsz() { let vwptSz = [window.innerHeight, window.devicePixelRatio];
         document.querySelector(':root').style.setProperty('--vwtHgt', vwptSz[0]+'px');
 
-        $(".SearchAreaOff").length && hideSrch(1)
+        $('.SearchAreaOff').length && hideSrch(1)
 
         if (vwptSz[1] > 1){
             $('#ftaLogoSt').attr('media', '(max-height: ' + 560 * vwptSz[1] + 'px)');
@@ -294,89 +292,89 @@ $(document).ready(() => {
     $(window).resize(debounce());
 })
 
-//Trigger para trocar "Salas Livres" para "Encontrar Horários"
-$('#room').change(() => {
-    $("#fndBt").attr("onclick", "fndTable(2)"); //Altera qual função o botão chama
-    $("#fndBt").text("Encontrar Horários");
+//Trigger para trocar 'Salas Livres' para 'Encontrar Horários'
+$('#sala').change(() => {
+    $('#fndBt').attr('onclick', 'fndTable(2)'); //Altera qual função o botão chama
+    $('#fndBt').text('Encontrar Horários');
 })
 
 // Trigger do campo de semestre e turno
-$("#course").change(() => {
+$('#curso').change(() => {
     /*
     Ao selecionar um curso, a opções de semestre e período compatível são obtidas em tempo real
     para evitar filtros não disponíveis
     */
 
-    let slctdCourse = $(`#course`).children("input").val(); //Identificando o curso selecionado pelo user
+    let slctdCourse = $('#curso').children('input').val(); //Identificando o curso selecionado pelo user
     let lastSelection = { //identificando o último semestre e período selecionados
-        'smstr': $('#smstr').children("input").val(), 
-        'time': $('#time').children("input").val() 
+        semestre: $('#semestre').children('input').val(), 
+        turno: $('#turno').children('input').val() 
     };
 
-    $('#smstr').children(".option_selected_beta").text("-- Semestre --"); //removendo todas as opções de semestre presentes
-    $('#smstr').children(".options_beta").children().remove(); //removendo todas as opções de semestre presentes
+    $('#semestre').children('.option_selected_beta').text('-- Semestre --'); //removendo todas as opções de semestre presentes
+    $('#semestre').children('.options_beta').children().remove(); //removendo todas as opções de semestre presentes
     
-    $('#time').children(".option_selected_beta").text("-- Período --"); //removendo todas as opções de período presentes
-    $('#time').children(".options_beta").children().remove(); //removendo todas as opções de período presentes
+    $('#turno').children('.option_selected_beta').text('-- Período --'); //removendo todas as opções de período presentes
+    $('#turno').children('.options_beta').children().remove(); //removendo todas as opções de período presentes
 
-    for (let field of ['smstr','time']) { let Fonts = FilterFlds[slctdCourse][field];        
+    for (let field of Object.keys(lastSelection)) { let Fonts = FilterFlds[slctdCourse][field];        
         for (let font of Fonts) {
             let optTxt = font.toString().toUpperCase();
-            let opt = document.createElement("div");
-                opt.classList.add("option_beta");
+            let opt = document.createElement('div');
+                opt.classList.add('option_beta');
                 opt.dataset.value = optTxt;
                 opt.textContent = optTxt;
 
-            $("#" + field).attr("data-disabled", "false");
-            $("#" + field).children(".options_beta").append(opt);
+            $('#' + field).attr('data-disabled', 'false');
+            $('#' + field).children('.options_beta').append(opt);
 
             if (lastSelection[field] === optTxt) {
-                $("#" + field).children(".option_selected_beta").text(optTxt);
-                $("#" + field).children("inputd").val(optTxt);
+                $('#' + field).children('.option_selected_beta').text(optTxt);
+                $('#' + field).children('inputd').val(optTxt);
             }
         }        
     }
     
     if (![
-            $("#course").children("input").val(),
-            $("#smstr").children("input").val(),
-            $("#time").children("input").val()
-        ].includes("0")
+            $('#curso').children('input').val(),
+            $('#semestre').children('input').val(),
+            $('#turno').children('input').val()
+        ].includes('0')
     )
-    $("#fndBt").attr("disabled", false); //Habilita o botão após selecionar um valor
+    $('#fndBt').attr('disabled', false); //Habilita o botão após selecionar um valor
 });
 
-$("#smstr").change(() => {
+$('#semestre').change(() => {
     if (![
-            $("#course").children("input").val(),
-            $("#smstr").children("input").val(),
-            $("#time").children("input").val()
-        ].includes("0")
+            $('#curso').children('input').val(),
+            $('#semestre').children('input').val(),
+            $('#turno').children('input').val()
+        ].includes('0')
     )
-    $("#fndBt").attr("disabled", false); //Habilita o botão após selecionar um valor
+    $('#fndBt').attr('disabled', false); //Habilita o botão após selecionar um valor
 });
 
-$("#time").change(() => {
+$('#turno').change(() => {
     if (![
-            $("#course").children("input").val(),
-            $("#smstr").children("input").val(),
-            $("#time").children("input").val()
-        ].includes("0")
+            $('#curso').children('input').val(),
+            $('#semestre').children('input').val(),
+            $('#turno').children('input').val()
+        ].includes('0')
     )
-    $("#fndBt").attr("disabled", false); //Habilita o botão após selecionar um valor
+    $('#fndBt').attr('disabled', false); //Habilita o botão após selecionar um valor
 });
 
 // Trigger de campos do professor
-$("#prof").change(() => {
-    $("#fndBt").attr("disabled", false); //Habilita o botão após selecionar um valor
+$('#professor').change(() => {
+    $('#fndBt').attr('disabled', false); //Habilita o botão após selecionar um valor
 });
 
 // Trigger de campos das salas
-$("#room").change(() => {
-    $("#fndBt").attr("disabled", false); //Habilita o botão após selecionar um valor
+$('#sala').change(() => {
+    $('#fndBt').attr('disabled', false); //Habilita o botão após selecionar um valor
 });
 
 // Trigger de campos das salas
-$("#clss").change(() => {
-    $("#fndBt").attr("disabled", false); //Habilita o botão após selecionar um valor
+$('#materia').change(() => {
+    $('#fndBt').attr('disabled', false); //Habilita o botão após selecionar um valor
 });
