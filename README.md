@@ -271,7 +271,7 @@ Inicialmente, esse projeto não tem um grande escopo e visa ser rodando em hospe
 Seguindo esses passos, uma versão base do site com horário fictícios deve aparecer como forma de desmonstração   
 ## Observações sobre hospedagens e o arquivo de parametros   
 Dentro desse escopo não há necessidade de omitir as variáveis, sendo assim, não existe ainda uma opção de usar .env e injeção de variáveis dentro do ambiente backend. Todas as variáveis ficam expostas no arquivo paramenters.js para quem quiser inspecionar a página.   
-Dentro desse projeto há um arquivo parameters.template.js que serve como base para injeção de variáveis usando o arquivo de build [`build.sh`](build.sh), o mesmo apenas substitui os campos das variáveis com as variáveis de ambiente armazenadas no servidor de host.   
+Dentro desse projeto há um arquivo [`parameters.template.js`](parameters.template.js) que serve como base para injeção de variáveis usando o arquivo de build [`build.sh`](build.sh), o mesmo apenas substitui os campos das variáveis com as variáveis de ambiente armazenadas no servidor de host.   
 ## Possíveis melhorias futuras   
 - Exportação da grade para **PDF ou imagem **(parcialmente feito)   
 - Desenhar a arquitetura do projeto para funcionar em nodeJS com injeção de variáveis no contexto do backend   
