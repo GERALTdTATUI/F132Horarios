@@ -26,28 +26,32 @@ async function schSrcs(sourceList = sources) {
 }
 
 async function schLastEdited() {
-  const source = excelLastEditedSource
-  const res = await fetch(source.URL);
-  const dataRow = source.InfoPosition !== undefined ? source.InfoPosition[0] : 0;
-  const dataCol = source.InfoPosition !== undefined ? source.InfoPosition[1] : 0;
-  let data, targetInfo;
+  try {
+    const source = excelLastEditedSource
+    const res = await fetch(source.URL);
+    const dataRow = source.InfoPosition !== undefined ? source.InfoPosition[0] : 0;
+    const dataCol = source.InfoPosition !== undefined ? source.InfoPosition[1] : 0;
+    let data, targetInfo;
 
-  switch (source.FileType) {
-    case "json": 
-      data = await res.json()
-      targetInfo = Object.values(data[dataRow])[dataCol]
-    break
+    switch (source.FileType) {
+      case "json": 
+        data = await res.json()
+        targetInfo = Object.values(data[dataRow])[dataCol]
+      break
 
-    case "csv":
-      data = await res.text();
-      targetInfo = data.split("\n")[dataRow].split(",")[dataCol].trim();
-    break
+      case "csv":
+        data = await res.text();
+        targetInfo = data.split("\n")[dataRow].split(",")[dataCol].trim();
+      break
 
-    case "tsv":
-      data = await res.text();
-      targetInfo = data.split("\n")[dataRow].split("\t")[dataCol].trim();
-    break
+      case "tsv":
+        data = await res.text();
+        targetInfo = data.split("\n")[dataRow].split("\t")[dataCol].trim();
+      break
+    }
+
+    return targetInfo;
+  } catch (e) {
+    console.error(e.message);
   }
-
-  return targetInfo;
 }

@@ -41,7 +41,7 @@
 
             // clmnHdrs = await fetch('parameters.json');
             // clmnHdrs = await clmnHdrs.json();
-            lastEditedTime = await schLastEdited()
+            lastEditedTime = await schLastEdited() || "N/D"
             $('#updtTime').text("Última Atualização: " + lastEditedTime);
 
             fullData = await schSrcs();
