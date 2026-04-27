@@ -81,37 +81,50 @@ function filterValues(value) {
     ) value = ''; return value.trim();
 }
 
+function ajustJsonHeaders(array) {
+  const items = Object.keys(array);
+  const new_array = new Object();
+
+  items.forEach(header => {
+    const new_header = standardizeHeaders(header)
+
+    new_array[new_header] = array[header];
+  })
+
+  return new_array
+}
+
 //Quando chamada, essa função substitui os títulos das colunas por um formato padronizado, facilitando a manipulação dos dados posteriormente
 function standardizeHeaders(value) {
   switch (true) {
-    case /Dia/i.test(value):
+    case new RegExp(clmnHdrs.dia, "i").test(value):
       return clmnHdrs.dia;
 
-    case /Horário/i.test(value):
+    case new RegExp(clmnHdrs.hora, "i").test(value):
       return clmnHdrs.hora;
 
-    case /Curso/i.test(value):
+    case new RegExp(clmnHdrs.curso, "i").test(value):
       return clmnHdrs.curso;
 
-    case /SEM/i.test(value):
+    case new RegExp(clmnHdrs.semestre, "i").test(value):
       return clmnHdrs.semestre;
 
-    case /SIGA/i.test(value):
+    case new RegExp(clmnHdrs.siga, "i").test(value):
       return clmnHdrs.siga;
 
-    case /Período/i.test(value):
+    case new RegExp(clmnHdrs.turno, "i").test(value):
       return clmnHdrs.turno;
 
-    case /Disciplina/i.test(value):
+    case new RegExp(clmnHdrs.materia, "i").test(value):
       return clmnHdrs.materia;
 
-    case /Docente/i.test(value):
+    case new RegExp(clmnHdrs.professor, "i").test(value):
       return clmnHdrs.professor;
 
-    case /Local/i.test(value):
+    case new RegExp(clmnHdrs.sala, "i").test(value):
       return clmnHdrs.sala;
 
-    case /Informação/i.test(value):
+    case new RegExp(clmnHdrs.info, "i").test(value):
       return clmnHdrs.info;
 
     default:

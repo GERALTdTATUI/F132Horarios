@@ -8,7 +8,8 @@ async function schSrcs(sourceList = sources) {
       
       if (source.FileType === "json") {
         const jsonData = await res.json();
-        dataList.push(jsonData);
+        const standardJsonData = jsonData.map(array => ajustJsonHeaders(array))
+        dataList.push(standardJsonData);
       } else if (source.FileType === "csv" || source.FileType === "tsv") {
         const text = await res.text();
         dataList.push(formTableData(text, source.FileType));
