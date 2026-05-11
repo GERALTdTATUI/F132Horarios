@@ -40,6 +40,12 @@ function getFltrsFlds(data) { let ltCourses = new Object(), ltTchr = new Array()
         !ltTchr.includes(line[clmnHdrs.professor]) &&
         !ignoredWordFilters.professor.some(word => new RegExp(word, "i").test(line[clmnHdrs.professor])) &&
         !ignoredExclusiveFilters.professor.some(word => line[clmnHdrs.professor] === word) &&
+          
+        !ignoredWordFilters.professor.some(word => new RegExp(word, "i").test(line[clmnHdrs.curso])) &&
+        !ignoredExclusiveFilters.professor.some(word => line[clmnHdrs.curso] === word) &&
+          
+        !ignoredWordFilters.professor.some(word => new RegExp(word, "i").test(line[clmnHdrs.materia])) &&
+        !ignoredExclusiveFilters.professor.some(word => line[clmnHdrs.materia] === word) &&
 
         !ignoredWordFilters.geral.some(word => new RegExp(word, "i").test(line[clmnHdrs.professor])) &&
         !ignoredExclusiveFilters.geral.some(word => line[clmnHdrs.professor] === word)
